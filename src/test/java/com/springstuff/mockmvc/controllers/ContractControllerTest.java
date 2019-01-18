@@ -4,12 +4,10 @@ import com.springstuff.mockmvc.App;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -21,9 +19,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //provides Spring Text Context Framework
 //preparing WebApplicationContext
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = App.class) //will scan all the classes under mockmvc package and will all annotated classes to the context
-@WebIntegrationTest //convenience annotation which says that this is a Integration Test and also a WebApp
+//@RunWith(SpringRunner.class) tells JUnit to run using Spring’s testing support.
+//SpringRunner is the new name for SpringJUnit4ClassRunner, it’s just a bit easier on the eye.
+//read https://dzone.com/articles/testing-improvements-in-spring-boot-14
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
+
 public class ContractControllerTest {
 
     @Autowired
